@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const EmployeeTable = () => {
   const [employees, setEmployees] = useState([]);
@@ -48,10 +49,10 @@ const EmployeeTable = () => {
   };
 
   return (
-    <div>
-      <h1>Employee List</h1>
-      <table border="1" style={{ width: '100%', textAlign: 'left', marginBottom: '20px' }}>
-        <thead>
+    <div className="container mt-4">
+      <h1 className="mb-4">Employee List</h1>
+      <table className="table table-bordered table-hover">
+        <thead className="table-dark">
           <tr>
             <th>ID</th>
             <th>First Name</th>
@@ -69,12 +70,15 @@ const EmployeeTable = () => {
               <td>{employee.email}</td>
               <td>
                 <button
+                  className="btn btn-primary btn-sm me-2"
                   onClick={() => navigateToUpdate(employee.id)}
-                  style={{ marginRight: '10px' }}
                 >
                   <FaEdit /> Update
                 </button>
-                <button onClick={() => deleteEmployee(employee.id)}>
+                <button
+                  className="btn btn-danger btn-sm"
+                  onClick={() => deleteEmployee(employee.id)}
+                >
                   <FaTrash /> Delete
                 </button>
               </td>
@@ -83,12 +87,22 @@ const EmployeeTable = () => {
         </tbody>
       </table>
 
-      <div>
-        <button disabled={page === 0} onClick={() => handlePageChange(page - 1)}>
+      <div className="d-flex justify-content-between align-items-center mt-3">
+        <button
+          className="btn btn-secondary"
+          disabled={page === 0}
+          onClick={() => handlePageChange(page - 1)}
+        >
           Previous
         </button>
-        <span> Page {page + 1} of {totalPages} </span>
-        <button disabled={page + 1 === totalPages} onClick={() => handlePageChange(page + 1)}>
+        <span>
+          Page {page + 1} of {totalPages}
+        </span>
+        <button
+          className="btn btn-secondary"
+          disabled={page + 1 === totalPages}
+          onClick={() => handlePageChange(page + 1)}
+        >
           Next
         </button>
       </div>
