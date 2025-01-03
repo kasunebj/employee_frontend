@@ -29,7 +29,7 @@ const EmployeeTable = () => {
   const deleteEmployee = async (id) => {
     if (window.confirm('Are you sure you want to delete this employee?')) {
       try {
-        await axios.delete(`http://localhost:8080/api/employees/${id}`);
+        await axios.delete(`http://localhost:8080/api/employees/delete/${id}`);
         alert('Employee deleted successfully');
         fetchEmployees(); // Refresh the list
       } catch (error) {
